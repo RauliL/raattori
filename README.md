@@ -4,6 +4,8 @@ Converts formal Finnish into various dialects. Rewrite of something called
 [Turkuraattori](https://netello.fi/turkuraattori) originally developed by
 [Netello Systems](https://netello.fi).
 
+[Online demo](https://rauli.dev/raattori/)
+
 ## Supported dialects
 
 - turku
