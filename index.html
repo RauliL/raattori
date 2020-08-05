@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Raattori</title>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/raattori@1.0.0/index.iife.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-4">Raattori demo</h1>
+    <form>
+      <div class="form-group">
+        <label for="dialect">Dialect</label>
+        <select class="form-control" id="dialect">
+          <option value="turku">Turku</option>
+          <option value="manse">Manse</option>
+          <option value="oulu">Oulu</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control w-100" id="input" rows="13" cols="80"></textarea>
+      </div>
+      <button type="submit" class="btn btn-block btn-primary">
+        Translate
+      </button>
+    </form>
+    <output class="mt-4" id="output"></output>
+  </div>
+  <script>
+    window.addEventListener('load', () => {
+      const form = document.querySelector('form');
+      const output = document.querySelector('#output');
+
+      form.addEventListener('submit', (ev) => {
+        const dialect = document.querySelector('#dialect').value;
+        const input = document.querySelector('#input').value;
+
+        ev.preventDefault();
+
+        output.innerText = raattori(input, dialect);
+      });
+    });
+  </script>
+</body>
+</html>
