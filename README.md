@@ -39,3 +39,20 @@ Hän siunasi ne sanoen: »Olkaa herelmälliset ja lisääntykää ja täyttäkä
 ```
 
 If dialect is omitted, `turku` dialect is chosen by default.
+
+## CLI
+
+Raattori also comes with an optional [CLI](https://en.wikipedia.org/wiki/Command-line_interface)
+which means it can also be used from command line. To do this, first install
+the package globally with:
+
+```bash
+$ yarn global add raattori
+```
+
+And then use the command `raattori` like this:
+
+```bash
+$ raattori --dialect turku "Minä olen komentoriviohjelma."
+Mää olen simmottos sit vaa komentoriviohjelma.
+```

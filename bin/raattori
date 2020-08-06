@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+const raattori = require('../index');
+const yargs = require('yargs');
+
+const argv = yargs
+  .option('dialect', {
+    alias: 'd',
+    description: 'Dialect to translate to',
+    type: 'string',
+  })
+  .help()
+  .alias('help', 'h')
+  .argv;
+
+const translate = (input, dialect) => {
+  let result;
+
+  try {
+    result = raattori(input, dialect);
+  } catch (e) {
+    process.stderr.write(`${argv.$0}: Unrecognized dialect: ${dialect}\n`);
+    process.exit(1);
+    return;
+  }
+
+  if (!/\n$/.test(result)) {
+    result += '\n';
+  }
+  process.stdout.write(result);
+};
+
+if (!argv._.length) {
+  let input = '';
+
+  process.stdin.on('data', (chunk) => {
+    input += chunk;
+  });
+  process.stdin.on('end', () => {
+    translate(input, argv.dialect);
+  });
+} else {
+  translate(argv._.join(' '), argv.dialect);
+}

@@ -19,13 +19,17 @@
   "keywords": [
     "natural language processing"
   ],
+  "bin": {
+    "raattori": "bin/raattori"
+  },
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -w",
     "prepack": "yarn run build"
   },
   "dependencies": {
-    "xregexp": "^4.3.0"
+    "xregexp": "^4.3.0",
+    "yargs": "^15.4.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
