@@ -1,4 +1,4 @@
-import * as XRegExp from 'xregexp';
+import XRegExp from 'xregexp';
 
 type Dictionary = { [key: string]: string };
 
@@ -509,7 +509,7 @@ const replaceEnding = (input: string, paatteet: Dictionary): string => {
 };
 
 const getWords = (input: string): string[] => (
-  XRegExp.split(input, '(?=^|$|[^\\p{L}])')
+  input.split(XRegExp('(?=^|$|[^\\p{L}])'))
 );
 
 const capitalizeFirstLetter = (input: string): string => (
@@ -537,13 +537,15 @@ const replaceWord = (input: string, replacement: string): string => {
   );
 };
 
-const postProcess = (input: string, randomit: string[]): string | null => (
-  Math.random() >= 0.083
-    ? null
-    : input === '.'
-    ? input
-    : ` ${capitalizeFirstLetter(randomit[Math.floor(Math.random() * randomit.length)])}`
-);
+const postProcess = (input: string, randomit: string[]): string | null => {
+  if (Math.random() >= 0.083) {
+    return null;
+  }
+
+  const randomi = randomit[Math.floor(Math.random() * randomit.length)];
+
+  return ` ${input === '.' ? capitalizeFirstLetter(randomi) : randomi}`;
+};
 
 export default (input: string, dialect: DialectType = 'turku'): string => {
   const mapping = dialectMapping[dialect.toLowerCase()];
